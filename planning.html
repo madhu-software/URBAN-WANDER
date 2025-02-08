@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nest - Your Next Holiday</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG0dby1wYWdlfHx8fGVufDB8MHxwaG0dby1wYWdlfHx8fGVufDB8fMHxwaG0dby1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 20px 0;
+            width: 85%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 60%;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin-right: 0; /* Removed specific margins for first 3 li elements as it's not scalable and maintainable */
+        }
+
+        .book-now-btn {
+            margin-left: auto;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            opacity: 0.9;
+            font-size: 16px;
+            transition: opacity 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+        }
+
+        .logo {
+            font-size: 2.0em;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .book-now-btn {
+            background-color: #FF7F50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .book-now-btn:hover {
+            background-color: #eb7a51;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            width: 85%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero h1:first-of-type {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .search-bar {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 70%;
+            max-width: 800px;
+        }
+
+        .search-bar-text {
+            color: #eee;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .search-bar input[type="text"] {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 18px;
+            margin-right: 10px;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .search-bar input[type="text"]::placeholder {
+            color: #ddd;
+            opacity: 0.8;
+        }
+
+        .search-bar input[type="text"]:focus {
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: #FF7F50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .search-bar button:hover {
+            background-color: #eb7a51;
+        }
+
+        .promo-text {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #f8bb86;
+            letter-spacing: 1px;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .category-buttons button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            min-width: 120px;
+            font-weight: 500;
+        }
+
+        .category-buttons button:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-content {
+            width: 85%;
+            max-width: 1200px;
+            padding: 20px;
+            text-align: center;
+            color: white; /* Added text color for main content to be white, to be visible on background */
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Urban Wander</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="booking.html" class="book-now-btn">BOOK NOW</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Search your next holiday</h1>
+        <form id="destinationForm" class="search-bar">
+            <input type="text" id="destinationInput" placeholder="Choose your destination...">
+            <button type="submit" id="destinationSearchButton">Search</button>
+        </form>
+
+        <p class="promo-text">CHECK OUR BEST PROMOTIONS</p>
+        <div class="category-buttons">
+            <button>CONCERTS</button>
+            <button>MOVIES</button>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <p>This is the main content area. You can add sections for featured destinations, holiday packages, or other content here to build out your page.</p>
+    </main>
+
+    <script>
+        document.getElementById('destinationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const destinationText = document.getElementById('destinationInput').value;
+            const redirectURL = 'http://localhost:3000/?destination=' + encodeURIComponent(destinationText);
+
+            window.location.href = redirectURL;
+        });
+
+        // JavaScript to get the destination from the URL (passed from server.js) and display it
+        document.addEventListener('DOMContentLoaded', function() {
+            const destinationFromURL = window.destinationFromURL; // Get the destination from the global variable
+
+            if (destinationFromURL) {
+                // Find the element where you want to display the destination (you might need to adjust the selector)
+                const chatDisplayElement = document.querySelector('.main-content p'); // Example: selects the <p> in main-content
+
+                if (chatDisplayElement) {
+                    chatDisplayElement.textContent = `Planning holiday to: ${destinationFromURL}`; // Set the text content
+                } else {
+                    console.log("Could not find chat display element to show destination.");
+                }
+            }
+        });
+    </script>
+<script>
+    document.getElementById('destinationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const destinationText = document.getElementById('destinationInput').value;
+        const redirectURL = 'http://localhost:3000/?destination=' + encodeURIComponent(destinationText);
+
+        window.location.href = redirectURL;
+    });
+
+    // JavaScript to get the destination from the URL (passed from server.js) and display it
+    document.addEventListener('DOMContentLoaded', function() {
+        const destinationFromURL = window.destinationFromURL; // Get the destination from the global variable
+
+        if (destinationFromURL) {
+            // Find the element where you want to display the destination (you might need to adjust the selector)
+            const chatDisplayElement = document.querySelector('.main-content p'); // Example: selects the <p> in main-content
+
+            if (chatDisplayElement) {
+                chatDisplayElement.textContent = `Planning holiday to: ${destinationFromURL}`; // Set the text content
+            } else {
+                console.log("Could not find chat display element to show destination.");
+            }
+        }
+    });
+
+    // Category button redirects
+    document.querySelector('.category-buttons button:nth-child(1)').onclick = function() {
+        window.open('https://insider.in/', '_blank');
+    };
+    document.querySelector('.category-buttons button:nth-child(2)').onclick = function() {
+        window.open('https://in.bookmyshow.com/', '_blank');
+    };
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Urban Wander</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .signin-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        .signin-container h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .social-signin-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-button {
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            color: #555;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .social-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .separator {
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            border-bottom: 1px solid #ddd;
+            width: 40%;
+        }
+
+        .separator::before {
+            left: 0;
+        }
+
+        .separator::after {
+            right: 0;
+        }
+
+        .separator span {
+            background-color: #fff;
+            padding: 0 10px;
+            color: #777;
+        }
+
+        .email-signin-form input[type="email"],
+        .email-signin-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .email-signin-form button {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-signin-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        #google-signin-error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .social-signin-buttons button.social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background-color: #1A73E8;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.30), 0 1px 3px 1px rgba(60,64,67,0.15);
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .social-signin-buttons button.social-button:hover {
+            background-color: #4285F4;
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,0.30), 0 4px 8px 3px rgba(60,64,67,0.15);
+        }
+
+        .social-signin-buttons button.social-button img {
+            background-color: white;
+            height: 20px;
+            width: 20px;
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signin-container">
+        <h2>Sign In to Urban Wander</h2>
+        <div class="social-signin-buttons">
+            <div id="g_id_onload"
+                 data-client_id="263377282526-qioeb9vm8l6eac3ch59bg9qib2rm8t57.apps.googleusercontent.com"
+                 data-context="signin"
+                 data-ux_mode="popup"
+                 data-callback="googleSignInCallback"
+                 data-auto_prompt="false">
+            </div>
+
+            <div class="g_id_signin"
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="filled_black"
+                 data-text="sign_in_with"
+                 data-shape="pill"
+                 data-logo_alignment="left">
+            </div>
+        </div>
+
+        <div id="google-signin-error" style="display: none;"></div>
+    </div>
+
+    <script>
+        function googleSignInCallback(response) {
+            console.log("Google Sign-in Response:", response);
+            const idToken = response.credential;
+
+            fetch("http://localhost:3000/google/signin", {  
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ credential: idToken })
+            })
+            .then(async (res) => {
+                if (!res.ok) {
+                    const errorResponse = await res.json().catch(() => ({})); // Handle non-JSON responses
+                    throw new Error(errorResponse.error || "Google sign-in failed");
+                }
+                return res.json();
+            })
+            .then(data => {
+                console.log("✅ Login Successful:", data);
+                alert('Google sign-in successful!'); 
+
+                document.getElementById('google-signin-error').style.display = 'none';
+            })
+            .catch(error => {
+                console.error("❌ Backend Sign-in Error:", error);
+
+                const errorDiv = document.getElementById('google-signin-error');
+                errorDiv.textContent = error.message;
+                errorDiv.style.display = 'block';
+            });
+        }
+
+        function facebookSignIn() {
+            alert("Initiating Facebook Sign-in (Conceptual)");
+        }
+
+        function twitterSignIn() {
+            alert("Initiating Twitter Sign-in (Conceptual)");
+        }
+    </script>
+</body>
+</html>

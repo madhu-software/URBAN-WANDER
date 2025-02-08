@@ -1,0 +1,236 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>Yathra AI Chatbot</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    /* --- Reset and Base Styles --- */
+    body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://res.cloudinary.com/dtljonz0f/image/upload/c_auto,ar_4:3,w_3840,g_auto/f_auto/q_auto/shutterstock_2118458942_ss_non-editorial_jnjpwq?_a=BAVARSAP0') no-repeat center center/cover;
+        background-attachment: fixed;
+        margin: 0;
+        color: #333; /* Default text color */
+    }
+
+    #chat-container {
+        background-color: rgba(255, 255, 255, 0.85); /* Slightly less transparent white */
+        border-radius: 20px; /* More rounded corners for container */
+        padding: 40px; /* Increased padding for container */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Enhanced shadow for depth */
+        width: 480px; /* Slightly wider chatbox */
+        max-width: 95%;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px; /* Increased heading margin */
+        color: #3a3a3a; /* Even darker heading color */
+        font-weight: 700; /* Bold heading */
+        font-size: 2.1rem; /* Larger heading size */
+        letter-spacing: -0.8px;
+    }
+
+    #chat-history {
+        height: 420px; /* Increased chat history height */
+        overflow-y: auto; /* Keep scroll for overflow */
+        padding: 20px; /* Increased chat history padding */
+        border-radius: 15px; /* More rounded chat history corners */
+        background-color: rgba(248, 249, 250, 0.7); /* Even more subtle background */
+        margin-bottom: 30px; /* Increased margin below chat history */
+        box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.07); /* Enhanced inner shadow */
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 25px;
+        scrollbar-width: thin; /* For Firefox */
+        scrollbar-color: #a8a8a8 #f0f0f0; /* For Firefox */
+    }
+
+    /* --- Custom Scrollbar Styling (Chrome, Safari, Edge) --- */
+    #chat-history::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    #chat-history::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 10px;
+    }
+
+    #chat-history::-webkit-scrollbar-thumb {
+        background: #a8a8a8;
+        border-radius: 10px;
+    }
+
+    #chat-history::-webkit-scrollbar-thumb:hover {
+        background: #909090;
+    }
+
+
+    .user-message, .bot-message {
+        padding: 16px 24px; /* Increased message padding */
+        border-radius: 28px; /* More rounded message corners */
+        margin-bottom: 15px; /* Increased margin between messages */
+        word-wrap: break-word;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12); /* Enhanced message shadow */
+        line-height: 1.5; /* Improved line height */
+        font-size: 16px; /* Slightly larger message font size */
+        color: #2e2e2e; /* Darker message text */
+    }
+
+    .user-message {
+        text-align: right;
+        background-color: rgba(179, 229, 252, 0.65); /* Slightly less transparent user message */
+        color: #333a40; /* Even darker text for user messages */
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 28px;
+        border-bottom-left-radius: 28px;
+        align-self: flex-end;
+    }
+
+    .bot-message {
+        text-align: left;
+        background-color: rgba(245, 245, 245, 0.7); /* Slightly less transparent bot message */
+        color: #333a40; /* Even darker text for bot messages */
+        border-top-left-radius: 4px;
+        border-top-right-radius: 28px;
+        border-bottom-left-radius: 28px;
+        align-self: flex-start;
+    }
+
+    form {
+        display: flex;
+        border-radius: 12px; /* More rounded form container */
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12); /* Enhanced form shadow */
+    }
+
+    input {
+        flex-grow: 1;
+        margin: 0;
+        padding: 16px; /* Increased input padding */
+        border: none;
+        border-radius: 0;
+        font-size: 16px; /* Slightly larger input font size */
+        background-color: rgba(255, 255, 255, 0.9); /* Even less transparent input background */
+        color: #444;
+        font-weight: 400;
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08); /* Subtle inner shadow for input */
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08), 0 0 0 0.2rem rgba(0, 179, 255, 0.1); /* Focus glow */
+    }
+
+    button {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        padding: 16px 24px; /* Increased button padding */
+        border-radius: 0;
+        border-radius: 0 12px 12px 0; /* More rounded button corners */
+        cursor: pointer;
+        font-size: 16px; /* Slightly larger button font size */
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+        letter-spacing: 0.6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Button shadow */
+    }
+
+    button:hover {
+        background-color: #00acc1;
+        transform: scale(1.03); /* Gentle scale up on hover */
+    }
+
+    button:active {
+        transform: scale(0.99); /* Slight scale down on click */
+    }
+
+
+    #loader {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+ <div id="chat-container">
+  <h1>Yathra AI</h1>
+  <div id="chat-history"></div>
+  <form id="chat-form">
+   <input type="text" id="user-input" placeholder="Enter your message">
+   <button type="submit">Send</button>
+  </form>
+ </div>
+<div id="loader">
+  <img src="loader.gif" width="150px" alt="Loading...">
+</div>
+ <script>
+  const chatHistory = document.getElementById('chat-history');
+  const userInput = document.getElementById('user-input');
+  const form = document.getElementById('chat-form');
+
+  async function sendMessage() {
+   const userMessage = userInput.value;
+   userInput.value = ''; // Clear input field
+   console.log(userMessage)
+   try {
+    const response = await fetch('/chat', {
+     method: 'POST',
+     headers: {
+      'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({ userInput: userMessage }),
+    });
+
+    const data = await response.json();
+    console.log(data)
+    const botMessage = data.response;
+    console.log(botMessage)
+    // Add chat message to the chat history
+    chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
+    chatHistory.innerHTML += `<div class="bot-message">${botMessage}</div>`;
+
+    // Scroll to the bottom of the chat history
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+   } catch (error) {
+    console.error('Error:', error);
+    // Handle errors gracefully, e.g., display an error message to the user
+   }
+  }
+
+  form.addEventListener('submit', (event) => {
+   event.preventDefault(); // Prevent form submission
+   const loader = document.getElementById('loader');
+   loader.style.display = 'block'; // Show the loader
+   sendMessage().finally(() => {
+    loader.style.display = 'none'; // Hide the loader after the message is sent
+   });;
+  });
+ </script>
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+   const destinationFromURL = window.destinationFromURL; // Get destination from URL (passed from server)
+
+   if (destinationFromURL) {
+    // *** IMPORTANT: ADJUST THIS SELECTOR ***
+    const chatDisplayElement = document.querySelector('.main-content p'); // Example selector - CHANGE THIS!
+
+    if (chatDisplayElement) {
+     chatDisplayElement.textContent = `Planning holiday to: ${destinationFromURL}`;
+    } else {
+     console.log("Could not find chat display element to show destination.");
+    }
+   }
+  });
+ </script>
+</body>
+</html> -->

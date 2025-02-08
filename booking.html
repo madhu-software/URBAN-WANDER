@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yathra</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8MHxwaG90by1wYWdlfHx8fHx&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 20px 0;
+            width: 85%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            opacity: 0.9;
+            font-size: 16px;
+            transition: opacity 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            width: 85%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero h1:first-of-type {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .search-bar {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .search-bar input[type="text"] {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            margin-right: 10px;
+            width: 300px;
+        }
+
+        .search-bar input[type="text"]:focus {
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: #FF7F50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #eb7a51;
+        }
+
+        .hero h1:nth-of-type(2) {
+            font-size: 2em;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .category-buttons button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            min-width: 100px;
+        }
+
+        .category-buttons button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Accessibilities Section Styles */
+        .accessibilities {
+            width: 85%;
+            max-width: 1200px;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .accessibilities h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #FF7F50;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+        }
+
+        .accessibilities p {
+            font-size: 1.1em;
+            color: #eee;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .accessibilities .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .accessibilities .feature {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .accessibilities .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .accessibilities .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 127, 80, 0.1), transparent);
+            pointer-events: none;
+            border-radius: 12px;
+        }
+
+
+        .accessibilities .feature img {
+            max-width: 70px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.4));
+            transition: transform 0.4s ease;
+        }
+
+        .accessibilities .feature:hover img {
+            transform: scale(1.1);
+        }
+
+
+        .accessibilities .feature h1 {
+            font-size: 1.5em;
+            margin-bottom: 0;
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+            transition: color 0.3s ease;
+        }
+
+        .accessibilities .feature a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            padding: 20px 0;
+            border-radius: 12px;
+        }
+
+        .accessibilities .feature:hover h1 {
+            color: #FF7F50;
+        }
+
+        /* Updated CSS for "Choose Your Stay" Section */
+        .accessibilities.stay-section h2 { /* Targeting "Choose Your Stay" heading */
+            font-size: 2.7em; /* Slightly larger for "Stay" heading */
+            margin-bottom: 15px;
+            color: #d67826; /* A softer orange for "Stay" heading */
+            letter-spacing: 1.2px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .accessibilities.stay-section .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Wider cards for hotel names */
+            gap: 35px; /* Increased gap for "Stay" section */
+        }
+
+        .accessibilities.stay-section .feature {
+            background: rgba(255, 255, 255, 0.1); /* Slightly less transparent for "Stay" cards */
+            padding: 35px 25px; /* More padding for "Stay" cards */
+            border-radius: 15px; /* More rounded corners for "Stay" cards */
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35); /* Deeper shadow for "Stay" cards */
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .accessibilities.stay-section .feature:hover {
+            transform: translateY(-12px); /* More pronounced lift for "Stay" cards */
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45); /* Stronger shadow on hover for "Stay" cards */
+        }
+
+        .accessibilities.stay-section .feature::before {
+            background: linear-gradient(45deg, rgba(248, 187, 134, 0.15), transparent); /* Warmer gradient for "Stay" cards */
+            border-radius: 15px; /* Match card border-radius */
+        }
+
+
+        .accessibilities.stay-section .feature img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4));
+            transition: transform 0.4s ease;
+            max-width: none; /* Override max-width for cover effect */
+            border-radius: 15px 15px 0 0; /* Make sure top corners are rounded */
+
+
+        }
+
+        .accessibilities.stay-section .feature:hover img {
+            transform: scale(1.05);
+        }
+
+
+        .accessibilities.stay-section .feature h1 {
+            font-size: 1.6em;
+        }
+
+        .accessibilities.stay-section .feature a {
+            padding: 0; /* Remove padding from the link itself in stay section */
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Make sure link fills the container */
+            padding-bottom: 15px; /* Add padding at the bottom of the link for quote spacing */
+        }
+
+        .accessibilities.stay-section .feature:hover h1 {
+            color: #f8bb86;
+        }
+
+        /* Style for hotel quotes */
+        .accessibilities.stay-section .feature .hotel-quote {
+            font-style: italic;
+            font-size: 1.1em;
+            color: #ddd;
+            opacity: 0.8;
+            margin-top: 10px;
+            padding: 0 15px 10px 15px;
+            text-shadow: 0 1px 1px rgba(0,0,0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Urban Wander</div>
+    </header>
+
+    <section class="accessibilities">
+        <h2>Choose Your Mode Of Transport</h2>
+        <p>Explore these amazing destinations with comfortable yet affordable rides</p>
+        <br>
+        <br>
+        <div class="feature-list">
+            <div class="feature">
+                <a href="https://www.ixigo.com/">  <img src="./imgs/rail.png" alt="Icon 1">
+                    <h1>Book trains</h1>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://www.ixigo.com/"> <img src="./imgs/plane.png" alt="Icon 2">
+                    <h1>Book flights</h1>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://www.uber.com/">    <img src="./imgs/taxi.png" alt="Icon 3">
+                    <h1>Book taxi</h1>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://www.redbus.in/">  <img src="./imgs/bus-lane.png" alt="Icon 4">
+                    <h1>Book bus</h1>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="accessibilities stay-section">
+        <h2>Choose Your Stay</h2>
+        <p>Explore these amazing hotels with top rated services</p>
+        <br>
+        <br>
+        <div class="feature-list">
+            <div class="feature">
+                <a href="https://www.goibibo.com/">  <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/2a/1a/b7/exterior.jpg?w=1200&h=-1&s=1" alt="Goibibo Hotel">
+                    <h1>Book Goibibo</h1>
+                    <p class="hotel-quote">"Your journey, our priority."</p>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://www.easemytrip.com/"> <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/21/20/c9/facadenight.jpg?w=1200&h=-1&s=1" alt="EaseMyTrip Hotel">
+                    <h1>Book EaseMyTrip</h1>
+                    <p class="hotel-quote">"Travel simplified, memories amplified."</p>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://www.trivago.in/">    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/33/4a/af/hyatt-place-vijayawada.jpg?w=1200&h=-1&s=1" alt="Trivago Hotel">
+                    <h1>Book Trivago</h1>
+                    <p class="hotel-quote">"Find your ideal hotel and save."</p>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://www.booking.com/">  <img src="https://www.travelawaits.com/wp-content/uploads/2021/11/atlantisthepalm-exterior-twilight-1-Ian-and-Ulrike-lemmin-woolfrey.jpg?fit=1200%2C1200" alt="Booking.com Hotel">
+                    <h1>Booking.com</h1>
+                    <p class="hotel-quote">"Get rewarded for your travels."</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="accessibilities stay-section">
+        <h2>Order Your Favourite Food</h2>
+        <p>Indulge in a curated selection of top-rated hotels, tailored to make your stay exceptional.</p>
+        <br>
+        <br>
+        <div class="feature-list">
+            <div class="feature">
+                <a href="https://www.zomato.com/">  <img src="https://i.pinimg.com/736x/1a/17/ed/1a17ed134ffeb3461f5d0f3ca0ee227d.jpg" alt="Goibibo Hotel">
+                    <h1>Book on Zomato</h1>
+                    <p class="hotel-quote">"Every dish you crave, now closer than ever"</p>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://www.swiggy.com/"> <img src="https://i.pinimg.com/736x/b3/8a/a1/b38aa1b21050b0e769a97eb751d12829.jpg" alt="EaseMyTrip Hotel">
+                    <h1>Book on Swiggy</h1>
+                    <p class="hotel-quote">"Your city's flavors, delivered in a snap."</p>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://online.kfc.co.in/">     <img src="data:image/png;base64,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" alt="Trivago Hotel">
+                    <h1>Book on KFC</h1>
+                    <p class="hotel-quote">"Crave the crunch? We're on our way!"</p>
+                </a>
+            </div>
+            <div class="feature">
+                <a href="https://online.kfc.co.in/">  <img src="https://yt3.googleusercontent.com/qSsLKieUIN5ES4N1h7KhuR1XL3mEwvav0QIFcCc7tmwGV3zeyPBo6OYNqyiZzC_nZBPBeo94=s900-c-k-c0x00ffffff-no-rj" alt="Booking.com Hotel">
+                    <h1>Book on MC-Donalds</h1>
+                    <p class="hotel-quote">"Your favorites, from our kitchen to your couch."</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>

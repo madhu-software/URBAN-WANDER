@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Wander</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS for the sign-in form */
+        #signInForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            z-index: 100; /* Ensure it's on top */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        #signInForm input[type="text"], #signInForm input[type="password"] { /* Style both input types */
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        #signInForm button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            border: none;
+            background-color: #007bff; /* Example color */
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #signInForm button:hover {
+            background-color: #0056b3; /* Darker on hover */
+        }
+
+        #signInMessage {
+            margin-top: 10px;
+            color: #d9534f; /* Example error color */
+        }
+
+        /* Style for the Sign In button in the header */
+        .sign-in {
+            background-color: transparent; /* Or a color of your choice */
+            border: none;
+            color: inherit; /* Inherit color from parent */
+            padding: 8px 16px; /* Adjust padding as needed */
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .sign-in:hover{
+            background-color: #ddd;
+        }
+        body {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard syntax */
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">URBAN WANDER</div>
+            <ul>
+                <li><a href="#">Plan Trip</a></li>
+                <li><a href="#">Book Stay</a></li>
+                <li><a href="#">Places</a></li>
+            </ul>
+            <div class="right-buttons">
+                <button class="theme-toggle">🌙</button>
+                <button class="sign-in" onclick="location.href='signin.html'">Sign In</button>
+            </div>
+        </nav>
+    </header>
+      <br>
+      <br>
+      
+  
+
+    <section class="hero">
+        <h1>Plan Your Journey with Confidence</h1>
+        <p>Get accurate cost estimates and plan your trips efficiently with our advanced travel planning tools.</p>
+        <button class="primary">Start Planning</button>
+       
+        <button class="ternary">Start Booking</button>
+    </section>
+  
+    <section class="features">
+        <h2>Why Choose Us?</h2>
+        <p>Plan your perfect trip with our comprehensive tools and features</p>
+        <div class="feature-list">
+            <div class="feature">
+                <img src="./imgs/download.png" alt="Icon 1">
+                <h3>Smart Route Planning</h3>
+                <p>Find the most efficient routes for your journey</p>
+            </div>
+            <div class="feature">
+                <img src="./imgs/download (3).png" alt="Icon 2">
+                <h3>Easy Scheduling</h3>
+                <p>Plan your itinerary with our intuitive tools</p>
+            </div>
+            <div class="feature">
+                <img src="./imgs/download (1).png" alt="Icon 3">
+                <h3>Budget Control</h3>
+                <p>Track and optimize your travel expenses</p>
+            </div>
+            <div class="feature">
+                <img src="./imgs/download (2).png" alt="Icon 4">
+                <h3>Real-time Updates</h3>
+                <p>Get live updates on prices and availability</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-destinations">
+        <h2>Popular Destinations</h2>
+        <p>Explore these amazing destinations and start planning your next adventure</p>
+        <br>
+        <br>
+        <div class="destination-cards-container">
+            <div class="destination-cards">
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/f4/89/79/f4897971be785e0c0713a0c95fe28528.jpg" alt="Paris">
+                    <h3>Paris</h3>
+                    <p>The City of Light awaits your discovery</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/dc/9c/d5/dc9cd51a9b90162f8baa7cc90f86fb63.jpg" alt="Tokyo">
+                    <h3>Tokyo</h3>
+                    <p>Experience the perfect blend of tradition and future</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/b3/c1/a6/b3c1a6f45ca0a25d045f2d636a8a1dd1.jpg" alt="New York">
+                    <h3>New York</h3>
+                    <p>The city that never sleeps welcomes you</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/a8/c4/b2/a8c4b2e1f73227b3618033adf4d540bf.jpg" alt="Venice">
+                    <h3>Venice</h3>
+                    <p>Float through the romantic canals of Italy</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/38/0d/ac/380dac6e06e7fe42c126755da07da099.jpg" alt="Bali">
+                    <h3>Bali</h3>
+                    <p>Experience paradise on Earth</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/fd/d2/95/fdd2959f9db4ce8cb3d89e9b07fb8a4c.jpg" alt="Santorini">
+                    <h3>Santorini</h3>
+                    <p>Discover the magic of Greek islands</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/31/32/88/31328872eb4f5824bc0ea1779b1baa3c.jpg" alt="Machu Picchu">
+                    <h3>Machu Picchu</h3>
+                    <p>Explore the ancient Incan citadel</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/c0/a2/c0/c0a2c03ff8311e7fbb121c89868728ed.jpg" alt="Dubai">
+                    <h3>Dubai</h3>
+                    <p>Experience luxury in the desert metropolis</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/f4/89/79/f4897971be785e0c0713a0c95fe28528.jpg" alt="Paris">
+                    <h3>Paris</h3>
+                    <p>The City of Light awaits your discovery</p>
+                </div>
+                </div>
+
+
+    <div id="signInForm" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc; z-index: 100;">
+        <h2>Sign In</h2>
+        <form id="signInActualForm">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+
+            <button type="button" onclick="signIn()">Sign In</button>
+            <button type="button" onclick="hideSignInForm()">Cancel</button>
+        </form>
+    </div>
+
+
+    <script>
+        function showSignInForm() {
+            document.getElementById("signInForm").style.display = "block";
+        }
+
+        function hideSignInForm() {
+            document.getElementById("signInForm").style.display = "none";
+        }
+
+        function signIn() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username.trim() === "" || password.trim() === "") {
+                alert("Please enter both username and password.");
+                return;
+            }
+
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                return;
+            }
+
+            alert("Sign in successful! (Client-side validation only)");
+            hideSignInForm(); 
+        }
+    </script>
+    <script src="script.js"></script>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="chat-button" class="chat-button" onclick="openChatbot()">
+    💬
+</div>
+
+<div id="chatbot" class="chatbot">
+    <div class="chatbot-header">
+        <h3>Chatbot</h3>
+        <span class="close-btn" onclick="closeChatbot()">×</span>
+    </div>
+    <div id="chatbot-body" class="chatbot-body">
+        <p>Hi there! How can I help you?</p>
+    </div>
+    <div class="chatbot-footer">
+        <input type="text" id="user-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Urban Wander. All rights reserved.</p>
+    <p>Contact us: <a href="mailto:info@urbanwander.com">info@urbanwander.com</a> | Phone: +91 9876543210</p>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">FAQ</a>
+    </div>
+    <div class="social-icons">
+        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+</footer>
+
+<style>
+    /* Footer Styles */
+    footer {
+        background-color: transparent; /* Fully transparent background */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: relative; /* For absolute positioning of social icons */
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box; /* To include padding in width */
+        margin-top: 20px; /* Add some space between main content and footer */
+    }
+
+    footer p {
+        margin: 5px 0;
+    }
+
+    .footer-links {
+        margin-top: 10px;
+    }
+
+    .footer-links a {
+        color: #bbb; /* Lighter color for links */
+        margin: 0 15px;
+        text-decoration: none;
+    }
+
+    .footer-links a:hover {
+        color: white; /* White on hover */
+    }
+
+    .social-icons {
+        position: absolute;
+        top: 10px;
+        right: 20px; /* Adjust as needed */
+        display: flex;
+    }
+
+    .social-icons a {
+        display: inline-flex;
+        width: 30px; /* Adjust size as needed */
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+        border-radius: 50%;
+        margin-left: 10px;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+        font-size: 18px; /* Icon size */
+        transition: background-color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background-color: rgba(255, 255, 255, 0.3); /* More opaque on hover */
+    }
+</style>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<p>Made by kalvians❤️</p>
+</body>
+</html>
